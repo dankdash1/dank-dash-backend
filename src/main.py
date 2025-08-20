@@ -21,7 +21,8 @@ app.register_blueprint(twilio_bp)
 app.register_blueprint(email_bp)
 
 # uncomment if you need to use database
-app.config['SQLALCHEMY_DATABASE_URI'] = f"sqlite:///{os.path.join(os.path.dirname(__file__), 'database', 'app.db')}"
+app.config[‘SQLALCHEMY_DATABASE_URI’] = os.environ.get(‘DATABASE_URL’, ‘postgresql://postgres:ETUpgcxHOIdshxOvtSmZWTHJRPRmfSnT@postgres.railway.internal:5432/railway’)
+
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db.init_app(app)
 with app.app_context():
